@@ -1,0 +1,39 @@
+POST http://localhost:3000/user/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2M2Q4MWQyZS0zMTMzLTQ0NjctYTAwMy1lMDU3MjE5ODdjYTQiLCJyb2xlIjoidXNlciIsImlhdCI6MTczOTMxMDQ3NCwiaXNzIjoiIiwiYXVkIjoiIiwiZXhwIjoxNzM5MzEyMjc0fQ.ZC-Ib97fy0f5TyI_HmUNES2swER7hjgmTgRBuJMU4vc
+
+
+{
+    "email": "user@user.com",
+    "pasword": "123"
+}
+
+
+###
+
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "user@user.com",
+    "password": "123"
+}
+###
+POST http://localhost:3000/projects/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJkYzQ3MTE4Ny02MzJhLTRlMmUtYmJmNS0zYWI2MDIwNmE5NDEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzkzMDgwMDIsImlzcyI6IiIsImF1ZCI6IiIsImV4cCI6MTczOTMwOTgwMn0.xYlMUjyEi4hQB1TZ97OI3IDEgRoWM0RCh10c42EM7q4
+
+{
+    "name": "admin@admdein.com",
+    "description": "new projet",
+    "state": true
+}
+
+###
+GET  http://localhost:3000/projects/get-all
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJkYzQ3MTE4Ny02MzJhLTRlMmUtYmJmNS0zYWI2MDIwNmE5NDEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzkzMDQ1OTksImlzcyI6IiIsImF1ZCI6IiIsImV4cCI6MTczOTMwNjM5OX0.w-x3xx534uiu_HtW8X-rG1VkLuMk6c5i61orzBgnr20
+
+
+###
+DELETE http://localhost:3000/projects/delete/f594848b-87ae-4b3c-834a-f268c3ee28f0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJkYzQ3MTE4Ny02MzJhLTRlMmUtYmJmNS0zYWI2MDIwNmE5NDEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzkzMDQ1OTksImlzcyI6IiIsImF1ZCI6IiIsImV4cCI6MTczOTMwNjM5OX0.w-x3xx534uiu_HtW8X-rG1VkLuMk6c5i61orzBgnr20

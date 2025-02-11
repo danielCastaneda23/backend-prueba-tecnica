@@ -14,7 +14,25 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
-  email String @unique
-  password String
-  }
+  id        String     @id @default(uuid())
+  email     String     @unique
+  password  String
+  projects  Projects[]
+  roleOwner Role       @relation(fields: [roleName], references: [name])
+  roleName  String     @unique
+}
+
+model Projects {
+  id          String  @id @default(uuid())
+  owner       User    @relation(fields: [ownerId], references: [id])
+  ownerId     String
+  name        String
+  state       Boolean
+  description String
+}
+
+model Role {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  user User?
+}

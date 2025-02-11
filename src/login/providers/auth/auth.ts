@@ -13,7 +13,6 @@ export class Auth {
     });
   }
   public async createToken(payload: { userId: string; role: any }) {
-    console.log('🧨', this.secretGenerated);
     const secretGenerated = await jose.importJWK(this.secretGenerated);
     const jwtInstanceObject = new jose.SignJWT(payload);
     const token = jwtInstanceObject
@@ -45,8 +44,12 @@ export class Auth {
   public async validateToken(token: string) {
     const secretGenerated = await jose.importJWK(this.secretGenerated);
     try {
-      await jose.jwtVerify(token, secretGenerated);
-      return true;
+      const res = await jose.jwtVerify(token, secretGenerated);
+      return {
+        isValid: true,
+        role: res.payload['role'],
+        userId: res.payload['userId'] as string,
+      };
     } catch (error: any) {
       throw new Error('Invalid Token' + error);
     }
@@ -59,10 +62,16 @@ export class Auth {
         where: {
           email: payload['email'],
         },
+        include: {
+          roleOwner: true,
+        },
       });
       if (isUser) {
         if (payload['password'] === isUser.password) {
-          return await this.createToken({ userId: isUser.id, role: 'user' });
+          return await this.createToken({
+            userId: isUser.id,
+            role: isUser.roleName,
+          });
         } else {
           throw new Error('Invalid password');
         }
